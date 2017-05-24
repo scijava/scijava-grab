@@ -136,7 +136,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 					dependency.put(DISABLE_CHECKSUMS_SETTING, disableChecksums);
 				}
 
-				if (!dependency.keySet().contains("classLoader")) {
+				if (!dependency.containsKey("classLoader")) {
 					dependency.put("classLoader", this.context().getClass()
 						.getClassLoader());
 				}
@@ -158,7 +158,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 					args.put(DISABLE_CHECKSUMS_SETTING, disableChecksums);
 				}
 
-				if (!args.keySet().contains("classLoader")) {
+				if (!args.containsKey("classLoader")) {
 					args.put("classLoader", this.context().getClass().getClassLoader());
 				}
 
@@ -242,7 +242,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 
 			if (this.isValidTargetClassLoader(loader)) {
 				if (args.get("refObject") == null) {
-					if (!args.keySet().contains("calleeDepth")) {
+					if (!args.containsKey("calleeDepth")) {
 						loader = ReflectionUtils.getCallingClass((int) args.get(
 							"calleeDepth")).getClassLoader();
 					}
