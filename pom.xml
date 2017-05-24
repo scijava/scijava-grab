@@ -86,6 +86,8 @@
 Wisconsin-Madison and Hadrien Mary.</license.copyrightOwners>
 
 		<groovy.version>2.4.10</groovy.version>
+		<ivy.version>2.4.0</ivy.version>
+		<scijava-common.version>2.64.0</scijava-common.version>
 	</properties>
 
 	<dependencies>
@@ -100,6 +102,15 @@ Wisconsin-Madison and Hadrien Mary.</license.copyrightOwners>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy</artifactId>
 			<version>${groovy.version}</version>
+		</dependency>
+
+		<!-- Runtime dependencies -->
+		<dependency>
+			<!-- NB: Needed, but undeclared, by Groovy Grape. -->
+			<groupId>org.apache.ivy</groupId>
+			<artifactId>ivy</artifactId>
+			<version>${ivy.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- Test scope dependencies -->
