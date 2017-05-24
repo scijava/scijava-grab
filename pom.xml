@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>scijava-grab</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.1.1-SNAPSHOT</version>
 
 	<name>SciJava Grab</name>
 	<description>SciJava library for dynamically grabbing dependencies.</description>
