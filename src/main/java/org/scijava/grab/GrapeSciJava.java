@@ -33,7 +33,8 @@ import org.codehaus.groovy.reflection.ReflectionUtils;
 import groovy.grape.GrapeIvy;
 
 /**
- * I had to extend GrapeIvy to use any CLassLoader (not only GroovyClassLoader).
+ * An extension of {@link GrapeIvy} which can use any {@link ClassLoader} (not
+ * only {@link groovy.lang.GroovyClassLoader}).
  *
  * @author Hadrien Mary
  */

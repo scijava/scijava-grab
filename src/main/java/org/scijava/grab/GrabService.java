@@ -25,6 +25,8 @@ import org.scijava.service.SciJavaService;
 import groovy.grape.GrapeEngine;
 
 /**
+ * Interface for services which acquire dependencies at runtime.
+ *
  * @author Hadrien Mary
  */
 public interface GrabService extends SciJavaService {

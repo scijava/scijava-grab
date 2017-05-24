@@ -31,9 +31,14 @@ import org.scijava.service.Service;
 import groovy.grape.GrapeEngine;
 
 /**
- * Facade to GrapeEngine. Kindly stolen from
- * https://github.com/apache/groovy/blob/master/src/main/groovy/grape/Grape.
- * java.
+ * Default implementation of {@link GrabService}.
+ * <p>
+ * Heavily adapted from <a href=
+ * "https://github.com/apache/groovy/blob/master/src/main/groovy/grape/Grape.java">
+ * Grape.java</a>.
+ * </p>
+ *
+ * @author Hadrien Mary
  */
 @Plugin(type = Service.class)
 public class DefaultGrabService extends AbstractService implements GrabService {
