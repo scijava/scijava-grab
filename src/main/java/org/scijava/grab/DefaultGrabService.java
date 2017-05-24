@@ -103,7 +103,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 	@Override
 	public void grab(final String endorsed) {
 		if (grabEnabled) {
-			final GrapeEngine instance = getGrapeEngine();
+			final GrapeEngine instance = grapeEngine();
 			if (instance != null) {
 				instance.grab(endorsed);
 			}
@@ -113,7 +113,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 	@Override
 	public void grab(final Map<String, Object> dependency) {
 		if (grabEnabled) {
-			final GrapeEngine instance = getGrapeEngine();
+			final GrapeEngine instance = grapeEngine();
 			if (instance != null) {
 				if (!dependency.containsKey(AUTO_DOWNLOAD_SETTING)) {
 					dependency.put(AUTO_DOWNLOAD_SETTING, autoDownload);
@@ -135,7 +135,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 	@Override
 	public void grab(final Map<String, Object> args, final Map... dependencies) {
 		if (grabEnabled) {
-			final GrapeEngine instance = getGrapeEngine();
+			final GrapeEngine instance = grapeEngine();
 			if (instance != null) {
 				if (!args.containsKey(AUTO_DOWNLOAD_SETTING)) {
 					args.put(AUTO_DOWNLOAD_SETTING, autoDownload);
@@ -157,7 +157,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 	public Map<String, Map<String, List<String>>> dependencies() {
 		Map<String, Map<String, List<String>>> grapes = null;
 		if (grabEnabled) {
-			final GrapeEngine instance = getGrapeEngine();
+			final GrapeEngine instance = grapeEngine();
 			if (instance != null) {
 				grapes = instance.enumerateGrapes();
 			}
@@ -178,7 +178,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 	{
 		URI[] uris = null;
 		if (grabEnabled) {
-			final GrapeEngine instance = getGrapeEngine();
+			final GrapeEngine instance = grapeEngine();
 			if (instance != null) {
 				if (!args.containsKey(AUTO_DOWNLOAD_SETTING)) {
 					args.put(AUTO_DOWNLOAD_SETTING, autoDownload);
@@ -196,7 +196,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 	public Map[] listDependencies(final ClassLoader cl) {
 		Map[] maps = null;
 		if (grabEnabled) {
-			final GrapeEngine instance = getGrapeEngine();
+			final GrapeEngine instance = grapeEngine();
 			if (instance != null) {
 				maps = instance.listDependencies(cl);
 			}
@@ -207,7 +207,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 	@Override
 	public void addResolver(final Map<String, Object> args) {
 		if (grabEnabled) {
-			final GrapeEngine instance = getGrapeEngine();
+			final GrapeEngine instance = grapeEngine();
 			if (instance != null) {
 				instance.addResolver(args);
 			}
@@ -287,7 +287,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 
 	// -- Helper methods --
 
-	private GrapeEngine getGrapeEngine() {
+	private GrapeEngine grapeEngine() {
 		if (grapeEngine == null) {
 			// Set some settings for Ivy
 			System.setProperty("groovy.grape.report.downloads", "true");
