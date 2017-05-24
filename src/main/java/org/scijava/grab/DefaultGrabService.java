@@ -37,7 +37,9 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -235,6 +237,38 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 	 * only {@link groovy.lang.GroovyClassLoader}).
 	 */
 	private static class GrapeSciJava extends GrapeIvy {
+
+		// NB: Used by Groovy internally; without this, we'll suffer as follows:
+		// groovy.lang.MissingPropertyException: No such property: exclusiveGrabArgs for class: org.scijava.grab.DefaultGrabService$GrapeSciJava
+		// at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.unwrap(ScriptBytecodeAdapter.java:53)
+		@SuppressWarnings("unused")
+		private Map<String, List<String>> exclusiveGrabArgs =
+			new HashMap<String, List<String>>()
+		{
+
+				{
+					put("group", Arrays.asList("groupId", "organisation", "organization",
+						"org"));
+					put("groupId", Arrays.asList("group", "organisation", "organization",
+						"org"));
+					put("organisation", Arrays.asList("group", "groupId", "organization",
+						"org"));
+					put("organization", Arrays.asList("group", "groupId", "organisation",
+						"org"));
+					put("org", Arrays.asList("group", "groupId", "organisation",
+						"organization"));
+					put("module", Arrays.asList("artifactId", "artifact"));
+					put("artifactId", Arrays.asList("module", "artifact"));
+					put("artifact", Arrays.asList("module", "artifactId"));
+					put("version", Arrays.asList("revision", "rev"));
+					put("revision", Arrays.asList("version", "rev"));
+					put("rev", Arrays.asList("version", "revision"));
+					put("conf", Arrays.asList("scope", "configuration"));
+					put("scope", Arrays.asList("conf", "configuration"));
+					put("configuration", Arrays.asList("conf", "scope"));
+
+				}
+			};
 
 		@Override
 		public ClassLoader chooseClassLoader(
