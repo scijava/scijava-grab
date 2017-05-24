@@ -45,6 +45,14 @@ public interface GrabService extends SciJavaService {
 
 	void addResolver(Map<String, Object> args);
 
+	/**
+	 * Gets a table of dependencies which have previously been grabbed.
+	 * 
+	 * @return A map keyed on {@code groupId}. Each key resolves to a map keyed on
+	 *         {@code artifactId}s of that {@code groupId}. Each
+	 *         {@code artifactId} key resolves to a list of resolved
+	 *         {@code version}s.
+	 */
 	Map<String, Map<String, List<String>>> dependencies();
 
 	/** Global flag to ignore checksums. By default it is set to false. */
