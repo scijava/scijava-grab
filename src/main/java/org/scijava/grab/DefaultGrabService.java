@@ -61,33 +61,35 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 	@Parameter
 	private Context context;
 
-	private boolean enableGrapes = Boolean.valueOf(System.getProperty(
-		"org.scijava.grape.enable", "true"));
-	private boolean enableAutoDownload = Boolean.valueOf(System.getProperty(
-		"org.scijava.grape.autoDownload", "true"));
-	private boolean disableChecksums = Boolean.valueOf(System.getProperty(
-		"org.scijava.grape.disableChecksums", "false"));
+	private boolean grabEnabled = Boolean.valueOf(System.getProperty(
+		"scijava.grab.enable", "true"));
 
-	private GrapeEngine grapeEngine = null;
+	private boolean autoDownload = Boolean.valueOf(System.getProperty(
+		"scijava.grab.autoDownload", "true"));
+
+	private boolean disableChecksums = Boolean.valueOf(System.getProperty(
+		"scijava.grab.disableChecksums", "false"));
+
+	private GrapeEngine grapeEngine;
 
 	@Override
-	public boolean getEnableGrapes() {
-		return enableGrapes;
+	public boolean isGrabEnabled() {
+		return grabEnabled;
 	}
 
 	@Override
-	public void setEnableGrapes(final boolean enableGrapes) {
-		this.enableGrapes = enableGrapes;
+	public void setGrabEnabled(final boolean enableGrab) {
+		this.grabEnabled = enableGrab;
 	}
 
 	@Override
 	public boolean getEnableAutoDownload() {
-		return enableAutoDownload;
+		return autoDownload;
 	}
 
 	@Override
 	public void setEnableAutoDownload(final boolean enableAutoDownload) {
-		this.enableAutoDownload = enableAutoDownload;
+		this.autoDownload = enableAutoDownload;
 	}
 
 	@Override
@@ -101,23 +103,8 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 	}
 
 	@Override
-	public GrapeEngine getGrapeEngine() {
-		if (this.grapeEngine == null) {
-
-			// Set some settings for Ivy
-			System.setProperty("groovy.grape.report.downloads", "true");
-			System.setProperty("grape.root", Paths.get(System.getProperty(
-				"user.home"), ".scijava").toString());
-
-			// Initialize the GrapeEngine
-			this.grapeEngine = new GrapeSciJava();
-		}
-		return grapeEngine;
-	}
-
-	@Override
 	public void grab(final String endorsed) {
-		if (enableGrapes) {
+		if (grabEnabled) {
 			final GrapeEngine instance = getGrapeEngine();
 			if (instance != null) {
 				instance.grab(endorsed);
@@ -127,11 +114,11 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 
 	@Override
 	public void grab(final Map<String, Object> dependency) {
-		if (enableGrapes) {
+		if (grabEnabled) {
 			final GrapeEngine instance = getGrapeEngine();
 			if (instance != null) {
 				if (!dependency.containsKey(AUTO_DOWNLOAD_SETTING)) {
-					dependency.put(AUTO_DOWNLOAD_SETTING, enableAutoDownload);
+					dependency.put(AUTO_DOWNLOAD_SETTING, autoDownload);
 				}
 				if (!dependency.containsKey(DISABLE_CHECKSUMS_SETTING)) {
 					dependency.put(DISABLE_CHECKSUMS_SETTING, disableChecksums);
@@ -149,11 +136,11 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 
 	@Override
 	public void grab(final Map<String, Object> args, final Map... dependencies) {
-		if (enableGrapes) {
+		if (grabEnabled) {
 			final GrapeEngine instance = getGrapeEngine();
 			if (instance != null) {
 				if (!args.containsKey(AUTO_DOWNLOAD_SETTING)) {
-					args.put(AUTO_DOWNLOAD_SETTING, enableAutoDownload);
+					args.put(AUTO_DOWNLOAD_SETTING, autoDownload);
 				}
 				if (!args.containsKey(DISABLE_CHECKSUMS_SETTING)) {
 					args.put(DISABLE_CHECKSUMS_SETTING, disableChecksums);
@@ -169,9 +156,9 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 	}
 
 	@Override
-	public Map<String, Map<String, List<String>>> enumerateGrapes() {
+	public Map<String, Map<String, List<String>>> dependencies() {
 		Map<String, Map<String, List<String>>> grapes = null;
-		if (enableGrapes) {
+		if (grabEnabled) {
 			final GrapeEngine instance = getGrapeEngine();
 			if (instance != null) {
 				grapes = instance.enumerateGrapes();
@@ -197,11 +184,11 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 		final Map... dependencies)
 	{
 		URI[] uris = null;
-		if (enableGrapes) {
+		if (grabEnabled) {
 			final GrapeEngine instance = getGrapeEngine();
 			if (instance != null) {
 				if (!args.containsKey(AUTO_DOWNLOAD_SETTING)) {
-					args.put(AUTO_DOWNLOAD_SETTING, enableAutoDownload);
+					args.put(AUTO_DOWNLOAD_SETTING, autoDownload);
 				}
 				if (!args.containsKey(DISABLE_CHECKSUMS_SETTING)) {
 					args.put(DISABLE_CHECKSUMS_SETTING, disableChecksums);
@@ -220,7 +207,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 	@Override
 	public Map[] listDependencies(final ClassLoader cl) {
 		Map[] maps = null;
-		if (enableGrapes) {
+		if (grabEnabled) {
 			final GrapeEngine instance = getGrapeEngine();
 			if (instance != null) {
 				maps = instance.listDependencies(cl);
@@ -237,7 +224,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 
 	@Override
 	public void addResolver(final Map<String, Object> args) {
-		if (enableGrapes) {
+		if (grabEnabled) {
 			final GrapeEngine instance = getGrapeEngine();
 			if (instance != null) {
 				instance.addResolver(args);
@@ -352,4 +339,20 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 			return configTempFile;
 		}
 	}
+
+	// -- Helper methods --
+
+	private GrapeEngine getGrapeEngine() {
+		if (grapeEngine == null) {
+			// Set some settings for Ivy
+			System.setProperty("groovy.grape.report.downloads", "true");
+			System.setProperty("grape.root", Paths.get(System.getProperty(
+				"user.home"), ".scijava").toString());
+
+			// Initialize the GrapeEngine
+			grapeEngine = new GrapeSciJava();
+		}
+		return grapeEngine;
+	}
+
 }

@@ -22,8 +22,6 @@ import java.util.Map;
 
 import org.scijava.service.SciJavaService;
 
-import groovy.grape.GrapeEngine;
-
 /**
  * Interface for services which acquire dependencies at runtime.
  *
@@ -33,7 +31,7 @@ public interface GrabService extends SciJavaService {
 
 	void addResolver(Map<String, Object> args);
 
-	Map<String, Map<String, List<String>>> enumerateGrapes();
+	Map<String, Map<String, List<String>>> dependencies();
 
 	/**
 	 * Global flag to ignore checksums. By default it is set to false.
@@ -68,9 +66,7 @@ public interface GrabService extends SciJavaService {
 	 * this class will not work if this property is set to false. By default it is
 	 * set to true.
 	 */
-	boolean getEnableGrapes();
-
-	GrapeEngine getGrapeEngine();
+	boolean isGrabEnabled();
 
 	void grab(String endorsed);
 
@@ -85,14 +81,14 @@ public interface GrabService extends SciJavaService {
 	URI[] resolve(Map<String, Object> args, List depsInfo, Map... dependencies);
 
 	/**
-	 * Set global flag to ignore checksums. By default it is set to false.
+	 * Sets global flag to ignore checksums. By default it is set to false.
 	 */
 	void setDisableChecksums(boolean disableChecksums);
 
 	/**
-	 * This is a static access auto download enabler. It will set the
-	 * 'autoDownload' value to the passed in arguments map if not already set. If
-	 * 'autoDownload' is set the value will not be adjusted.
+	 * This toggles the auto download feature. It will set the 'autoDownload'
+	 * value to the passed in arguments map if not already set. If 'autoDownload'
+	 * is set the value will not be adjusted.
 	 * <p>
 	 * This applies to the grab and resolve calls.
 	 * <p>
@@ -111,9 +107,7 @@ public interface GrabService extends SciJavaService {
 	 * This is a static access kill-switch. All of the static shortcut methods in
 	 * this class will not work if this property is set to false. By default it is
 	 * set to true.
-	 *
-	 * @param enableGrapes
 	 */
-	void setEnableGrapes(boolean enableGrapes);
+	void setGrabEnabled(boolean grabEnabled);
 
 }
