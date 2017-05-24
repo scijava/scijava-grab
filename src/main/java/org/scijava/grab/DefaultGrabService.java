@@ -23,9 +23,7 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -224,34 +222,6 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 	 */
 	private static class GrapeSciJava extends GrapeIvy {
 
-		Map<String, List<String>> exclusiveGrabArgs =
-			new HashMap<String, List<String>>()
-		{
-
-				{
-					put("group", Arrays.asList("groupId", "organisation", "organization",
-						"org"));
-					put("groupId", Arrays.asList("group", "organisation", "organization",
-						"org"));
-					put("organisation", Arrays.asList("group", "groupId", "organization",
-						"org"));
-					put("organization", Arrays.asList("group", "groupId", "organisation",
-						"org"));
-					put("org", Arrays.asList("group", "groupId", "organisation",
-						"organization"));
-					put("module", Arrays.asList("artifactId", "artifact"));
-					put("artifactId", Arrays.asList("module", "artifact"));
-					put("artifact", Arrays.asList("module", "artifactId"));
-					put("version", Arrays.asList("revision", "rev"));
-					put("revision", Arrays.asList("version", "rev"));
-					put("rev", Arrays.asList("version", "revision"));
-					put("conf", Arrays.asList("scope", "configuration"));
-					put("scope", Arrays.asList("conf", "configuration"));
-					put("configuration", Arrays.asList("conf", "scope"));
-
-				}
-			};
-
 		@Override
 		public ClassLoader chooseClassLoader(final Map args) {
 			ClassLoader loader = (ClassLoader) args.get("classLoader");
@@ -285,10 +255,6 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 
 		private boolean isValidTargetClassLoader(final ClassLoader loader) {
 			return loader == null ? false : loader.getClass() == ClassLoader.class;
-		}
-
-		private boolean isValidTargetClassLoaderClass(final Class loaderClass) {
-			return isValidTargetClassLoader(loaderClass.getClassLoader());
 		}
 
 		@Override
