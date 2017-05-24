@@ -35,8 +35,6 @@ public interface GrabService extends SciJavaService {
 
 	/**
 	 * Global flag to ignore checksums. By default it is set to false.
-	 * 
-	 * @return
 	 */
 	boolean getDisableChecksums();
 
@@ -56,8 +54,6 @@ public interface GrabService extends SciJavaService {
 	 * be checked for new versions and downloaded (with dependencies) if found.
 	 * <p>
 	 * By default it is set to true.
-	 * 
-	 * @return
 	 */
 	boolean getEnableAutoDownload();
 

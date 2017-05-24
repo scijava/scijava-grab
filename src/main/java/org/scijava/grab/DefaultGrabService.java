@@ -164,12 +164,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 				grapes = instance.enumerateGrapes();
 			}
 		}
-		if (grapes == null) {
-			return Collections.emptyMap();
-		}
-		else {
-			return grapes;
-		}
+		return grapes == null ? Collections.emptyMap() : grapes;
 	}
 
 	@Override
@@ -196,12 +191,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 				uris = instance.resolve(args, depsInfo, dependencies);
 			}
 		}
-		if (uris == null) {
-			return new URI[0];
-		}
-		else {
-			return uris;
-		}
+		return uris == null ? new URI[0] : uris;
 	}
 
 	@Override
@@ -213,13 +203,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 				maps = instance.listDependencies(cl);
 			}
 		}
-		if (maps == null) {
-			return new Map[0];
-		}
-		else {
-			return maps;
-		}
-
+		return maps == null ? new Map[0] : maps;
 	}
 
 	@Override
@@ -300,12 +284,7 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 		}
 
 		private boolean isValidTargetClassLoader(final ClassLoader loader) {
-			if (loader != null) {
-				return loader.getClass() == ClassLoader.class;
-			}
-			else {
-				return false;
-			}
+			return loader == null ? false : loader.getClass() == ClassLoader.class;
 		}
 
 		private boolean isValidTargetClassLoaderClass(final Class loaderClass) {
