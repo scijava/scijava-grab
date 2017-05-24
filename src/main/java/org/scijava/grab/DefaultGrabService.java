@@ -237,7 +237,9 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 	private static class GrapeSciJava extends GrapeIvy {
 
 		@Override
-		public ClassLoader chooseClassLoader(final Map args) {
+		public ClassLoader chooseClassLoader(
+			@SuppressWarnings("rawtypes") final Map args)
+		{
 			ClassLoader loader = (ClassLoader) args.get("classLoader");
 
 			if (this.isValidTargetClassLoader(loader)) {
