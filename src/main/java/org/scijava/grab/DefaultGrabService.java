@@ -54,88 +54,31 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 
 	private GrapeEngine grapeEngine = null;
 
-	/**
-	 * This is a static access kill-switch. All of the static shortcut methods in
-	 * this class will not work if this property is set to false. By default it is
-	 * set to true.
-	 *
-	 * @return
-	 */
 	@Override
 	public boolean getEnableGrapes() {
 		return enableGrapes;
 	}
 
-	/**
-	 * This is a static access kill-switch. All of the static shortcut methods in
-	 * this class will not work if this property is set to false. By default it is
-	 * set to true.
-	 *
-	 * @param enableGrapes
-	 */
 	@Override
 	public void setEnableGrapes(final boolean enableGrapes) {
 		this.enableGrapes = enableGrapes;
 	}
 
-	/**
-	 * This is a static access auto download enabler. It will set the
-	 * 'autoDownload' value to the passed in arguments map if not already set. If
-	 * 'autoDownload' is set the value will not be adjusted.
-	 * <p>
-	 * This applies to the grab and resolve calls.
-	 * <p>
-	 * If it is set to false, only previously downloaded grapes will be used. This
-	 * may cause failure in the grape call if the library has not yet been
-	 * downloaded
-	 * <p>
-	 * If it is set to true, then any jars not already downloaded will
-	 * automatically be downloaded. Also, any versions expressed as a range will
-	 * be checked for new versions and downloaded (with dependencies) if found.
-	 * <p>
-	 * By default it is set to true.
-	 */
 	@Override
 	public boolean getEnableAutoDownload() {
 		return enableAutoDownload;
 	}
 
-	/**
-	 * This is a static access auto download enabler. It will set the
-	 * 'autoDownload' value to the passed in arguments map if not already set. If
-	 * 'autoDownload' is set the value will not be adjusted.
-	 * <p>
-	 * This applies to the grab and resolve calls.
-	 * <p>
-	 * If it is set to false, only previously downloaded grapes will be used. This
-	 * may cause failure in the grape call if the library has not yet been
-	 * downloaded.
-	 * <p>
-	 * If it is set to true, then any jars not already downloaded will
-	 * automatically be downloaded. Also, any versions expressed as a range will
-	 * be checked for new versions and downloaded (with dependencies) if found. By
-	 * default it is set to true.
-	 *
-	 * @param enableAutoDownload
-	 */
 	@Override
 	public void setEnableAutoDownload(final boolean enableAutoDownload) {
 		this.enableAutoDownload = enableAutoDownload;
 	}
 
-	/**
-	 * Global flag to ignore checksums. By default it is set to false.
-	 */
 	@Override
 	public boolean getDisableChecksums() {
 		return disableChecksums;
 	}
 
-	/**
-	 * Set global flag to ignore checksums. By default it is set to false.
-	 *
-	 * @param disableChecksums
-	 */
 	@Override
 	public void setDisableChecksums(final boolean disableChecksums) {
 		this.disableChecksums = disableChecksums;
