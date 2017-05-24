@@ -47,9 +47,7 @@ public interface GrabService extends SciJavaService {
 
 	Map<String, Map<String, List<String>>> dependencies();
 
-	/**
-	 * Global flag to ignore checksums. By default it is set to false.
-	 */
+	/** Global flag to ignore checksums. By default it is set to false. */
 	boolean getDisableChecksums();
 
 	/**
