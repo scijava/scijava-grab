@@ -84,6 +84,8 @@
 		<license.projectName>SciJava Common shared library for SciJava software.</license.projectName>
 		<license.copyrightOwners>Board of Regents of the University of
 Wisconsin-Madison and Hadrien Mary.</license.copyrightOwners>
+
+		<groovy.version>2.4.10</groovy.version>
 	</properties>
 
 	<dependencies>
@@ -97,7 +99,7 @@ Wisconsin-Madison and Hadrien Mary.</license.copyrightOwners>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy</artifactId>
-			<version>2.4.10</version>
+			<version>${groovy.version}</version>
 		</dependency>
 
 		<!-- Test scope dependencies -->
