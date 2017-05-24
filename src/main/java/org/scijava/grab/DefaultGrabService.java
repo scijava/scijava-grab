@@ -253,10 +253,6 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 			return loader;
 		}
 
-		private boolean isValidTargetClassLoader(final ClassLoader loader) {
-			return loader == null ? false : loader.getClass() == ClassLoader.class;
-		}
-
 		@Override
 		public File getLocalGrapeConfig() {
 			final InputStream configStream = GrapeSciJava.class.getResourceAsStream(
@@ -282,6 +278,10 @@ public class DefaultGrabService extends AbstractService implements GrabService {
 			}
 
 			return configTempFile;
+		}
+
+		private boolean isValidTargetClassLoader(final ClassLoader loader) {
+			return loader == null ? false : loader.getClass() == ClassLoader.class;
 		}
 	}
 
