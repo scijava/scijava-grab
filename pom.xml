@@ -88,6 +88,9 @@ Wisconsin-Madison and Hadrien Mary.</license.copyrightOwners>
 		<groovy.version>2.4.10</groovy.version>
 		<ivy.version>2.4.0</ivy.version>
 		<scijava-common.version>2.64.0</scijava-common.version>
+
+		<!-- NB: Deploy releases to the ImageJ Maven repository. -->
+		<releaseProfiles>deploy-to-imagej</releaseProfiles>
 	</properties>
 
 	<dependencies>
