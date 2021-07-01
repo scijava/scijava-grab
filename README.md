@@ -1,3 +1,5 @@
+[![](https://github.com/scijava/scijava-grab/actions/workflows/build-main.yml/badge.svg)](https://github.com/scijava/scijava-grab/actions/workflows/build-main.yml)
+
 This repository extends the SciJava script framework to support Groovy-style
 dependency grabbing at runtime.
 
