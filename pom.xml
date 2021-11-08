@@ -63,7 +63,7 @@
 	</mailingLists>
 
 	<scm>
-		<connection>scm:git:git://github.com/scijava/scijava-grab</connection>
+		<connection>scm:git:https://github.com/scijava/scijava-grab</connection>
 		<developerConnection>scm:git:git@github.com:scijava/scijava-grab</developerConnection>
 		<tag>HEAD</tag>
 		<url>https://github.com/scijava/scijava-grab</url>
