@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.scijava</groupId>
 		<artifactId>pom-scijava</artifactId>
-		<version>31.1.0</version>
+		<version>37.0.0</version>
 		<relativePath />
 	</parent>
 
@@ -84,8 +84,8 @@
 		<license.projectName>SciJava Common shared library for SciJava software.</license.projectName>
 		<license.copyrightOwners>SciJava developers.</license.copyrightOwners>
 
-		<groovy.version>2.4.10</groovy.version>
-		<ivy.version>2.4.0</ivy.version>
+		<groovy.version>4.0.18</groovy.version>
+		<ivy.version>2.5.2</ivy.version>
 
 		<!-- NB: Deploy releases to the SciJava Maven repository. -->
 		<releaseProfiles>sign,deploy-to-scijava</releaseProfiles>
@@ -100,7 +100,7 @@
 
 		<!-- Third party dependencies -->
 		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
+			<groupId>org.apache.groovy</groupId>
 			<artifactId>groovy</artifactId>
 			<version>${groovy.version}</version>
 		</dependency>
