@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>scijava-grab</artifactId>
-	<version>0.1.2-SNAPSHOT</version>
+	<version>0.1.2</version>
 
 	<name>SciJava Grab</name>
 	<description>SciJava library for dynamically grabbing dependencies.</description>
@@ -65,7 +65,7 @@
 	<scm>
 		<connection>scm:git:https://github.com/scijava/scijava-grab</connection>
 		<developerConnection>scm:git:git@github.com:scijava/scijava-grab</developerConnection>
-		<tag>HEAD</tag>
+		<tag>scijava-grab-0.1.2</tag>
 		<url>https://github.com/scijava/scijava-grab</url>
 	</scm>
 	<issueManagement>
